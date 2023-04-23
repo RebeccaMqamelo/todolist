@@ -1,6 +1,9 @@
 html {
-  background-color: #E4E9FD;
-  background-image: -webkit-linear-gradient(65deg, #A683E3 50%, #E4E9FD 50%);
+  /*background-color: #E4E9FD;*/
+  /*background-image: linear-gradient(to left, #ffffff, #ffdee3);*/
+  background: rgb(240, 194, 194);
+    background: linear-gradient(90deg, rgba(240, 194, 194, 1) 0%, rgba(255, 246, 246, 1) 100%);
+  /*background-image: -webkit-linear-gradient(65deg, #A683E3 50%, #E4E9FD 50%);*/
   min-height: 1000px;
   font-family: 'helvetica neue';
 }
@@ -18,8 +21,24 @@ h1 {
   box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
 }
 
+.quote-display {
+  max-width: 400px;
+  margin: 25px auto;
+}
+
+.quote-text {
+  font-style: italic;
+  padding: 15px;
+}
+
+.quote-author {
+  text-align: right;
+  padding: 15px;
+}
+
 #heading {
-  background-color: #A683E3;
+  /*background-color: #A683E3;*/
+  background-color: #cd8e8e;
   text-align: center;
 }
 
@@ -36,7 +55,7 @@ h1 {
 
 input:checked+p {
   text-decoration: line-through;
-  text-decoration-color: #A683E3;
+  text-decoration-color: #cd8e8e;/*#A683E3;*/
 }
 
 input[type="checkbox"] {
@@ -61,10 +80,10 @@ button {
   width: 50px;
   border-radius: 50%;
   border-color: transparent;
-  background-color: #A683E3;
+  background-color: #cd8e8e;
   color: #fff;
   font-size: 30px;
-  padding-bottom: 6px;
+  padding-bottom: 0px;
   border-width: 0;
 }
 
@@ -81,7 +100,7 @@ input[type="text"] {
 
 input[type="text"]:focus {
   outline: none;
-  box-shadow: inset 0 -3px 0 0 #A683E3;
+  box-shadow: inset 0 -3px 0 0 #cd8e8e;
 }
 
 ::placeholder {
@@ -90,7 +109,7 @@ input[type="text"]:focus {
 }
 
 footer {
-  color: white;
+  /*color: white;*/
   color: rgba(0, 0, 0, 0.5);
   text-align: center;
 }

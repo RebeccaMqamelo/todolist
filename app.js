@@ -5,6 +5,8 @@ const bodyParser = require("body-parser");
 const date = require(__dirname + "/date.js");
 const mongoose = require("mongoose");
 const _ = require("lodash");
+const quote = require(__dirname + "/quote.js");
+require('dotenv').config();
 
 const app = express();
 
@@ -15,10 +17,7 @@ app.use(express.static("public"));
 
 // SET UP DB
 
-//const items = ["Buy Food", "Cook Food", "Eat Food"];
-//const workItems = [];
-
-mongoose.connect("mongodb+srv://rebeccamqamelo:0712177489@cluster0.i4bvkyp.mongodb.net/todolistDB", {useNewUrlParser: true})
+mongoose.connect("mongodb+srv://" + process.env.mongoUsername + ":" + process.env.mongoPassword + "@cluster0.i4bvkyp.mongodb.net/todolistDB", {useNewUrlParser: true})
 
 const itemsSchema = mongoose.Schema({
   name: {
@@ -60,12 +59,19 @@ app.get("/", function(req, res) {
   const day = date.getDate();
 
   Item.find({}).then(foundItems => {
-    console.log(foundItems);
+    //console.log(foundItems);
     if (foundItems.length === 0) { // insert default items
       Item.insertMany(defaultItems);
       res.redirect("/") // and return to root route to call the else statement below:
     } else { // render existing items
-      res.render("list", { listTitle: day, newListItems: foundItems });
+
+      newQuote = quote.newQuote();
+
+      res.render("list", { 
+        listTitle: day, 
+        newListItems: foundItems, 
+        newQuote: '"' + newQuote.quote + '"', 
+        quoteAuthor: newQuote.author });
     }
     
   });
@@ -116,7 +122,7 @@ app.post("/delete", function(req, res) {
     }
 });
 
-// When use tries to create a new list, create a new list in the Lists collection
+// When user tries to create a new list, create a new list in the Lists collection
 
 app.get("/:customListName", function(req,res){
   const customListName = _.capitalize(req.params.customListName);
